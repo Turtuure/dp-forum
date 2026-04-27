@@ -112,7 +112,7 @@ final class SqlForumReportRepository implements ForumReportRepositoryInterface
               ORDER BY created_at DESC',
             [$targetType, $targetId, $tenantId->value()],
         );
-        return array_map($this->hydrate(...), $rows);
+        return array_values(array_map($this->hydrate(...), $rows));
     }
 
     public function resolveAllForTarget(

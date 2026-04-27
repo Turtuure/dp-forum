@@ -42,7 +42,7 @@ final class SqlForumUserWarningRepository implements ForumUserWarningRepositoryI
             [$userId, $tenantId->value()],
         );
 
-        return array_map(static fn (array $r): ForumUserWarning => new ForumUserWarning(
+        return array_values(array_map(static fn (array $r): ForumUserWarning => new ForumUserWarning(
             ForumUserWarningId::fromString(self::str($r, 'id')),
             TenantId::fromString(self::str($r, 'tenant_id')),
             self::str($r, 'user_id'),
@@ -50,7 +50,7 @@ final class SqlForumUserWarningRepository implements ForumUserWarningRepositoryI
             self::strOrNull($r, 'related_report_id'),
             self::str($r, 'issued_by'),
             self::str($r, 'created_at'),
-        ), $rows);
+        ), $rows));
     }
 
     /** @param array<string, mixed> $row */
