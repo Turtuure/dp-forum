@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="currentColor" role="img" aria-label="No topics">
+  <style>.es-bg{fill:var(--surface-dark)}</style>
+  <g opacity="0.2"><rect x="32" y="40" width="100" height="56" rx="8"/></g>
+  <g>
+    <rect x="40" y="32" width="100" height="56" rx="8" fill="currentColor" opacity="0.55"/>
+    <rect x="50" y="44" width="60" height="4" rx="2" class="es-bg" opacity="0.85"/>
+    <rect x="50" y="54" width="80" height="3" rx="1.5" class="es-bg" opacity="0.6"/>
+    <rect x="50" y="61" width="64" height="3" rx="1.5" class="es-bg" opacity="0.6"/>
+    <rect x="50" y="68" width="74" height="3" rx="1.5" class="es-bg" opacity="0.6"/>
+  </g>
+  <g transform="translate(150, 102)">
+    <rect x="-22" y="-12" width="44" height="24" rx="4" fill="currentColor" opacity="0.45"/>
+    <rect x="-15" y="-5"  width="30" height="3" rx="1.5" class="es-bg" opacity="0.85"/>
+    <rect x="-15" y="2"   width="20" height="3" rx="1.5" class="es-bg" opacity="0.6"/>
+  </g>
+</svg>
