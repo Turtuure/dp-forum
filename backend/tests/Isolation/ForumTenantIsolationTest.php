@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace DaemsModule\Forum\Tests\Isolation;
 
 use Daems\Domain\Forum\ForumCategoryId;
-use DaemsModule\Forum\Infrastructure\SqlForumRepository;
 use Daems\Infrastructure\Framework\Database\Connection;
+use Daems\Tests\Isolation\IsolationTestCase;
+use DaemsModule\Forum\Infrastructure\SqlForumRepository;
 
 final class ForumTenantIsolationTest extends IsolationTestCase
 {
