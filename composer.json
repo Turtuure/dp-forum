@@ -1,0 +1,16 @@
+{
+    "name": "turtuure/dp-forum",
+    "description": "Forum module for Daems platform",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "DaemsModule\\Forum\\": "backend/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DaemsModule\\Forum\\Tests\\": "backend/tests/"
+        }
+    }
+}
