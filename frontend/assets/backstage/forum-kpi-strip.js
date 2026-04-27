@@ -17,6 +17,14 @@
     mod_actions:  '#16a34a',
   };
 
+  // Per-card series labels surfaced in the sparkline tooltip.
+  var KPI_NAMES = {
+    open_reports: 'Open reports',
+    topics:       'Topics',
+    categories:   'Categories',
+    mod_actions:  'Mod actions',
+  };
+
   fetch('/api/backstage/forum.php?op=stats')
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (j) { render(j && j.data ? j.data : null); })
@@ -44,6 +52,6 @@
 
   function initSpark(id, points) {
     var el = document.getElementById('spark-' + id);
-    if (el && window.Sparkline) window.Sparkline.init(el, points || [], KPI_COLORS[id]);
+    if (el && window.Sparkline) window.Sparkline.init(el, points || [], KPI_COLORS[id], KPI_NAMES[id]);
   }
 })();
