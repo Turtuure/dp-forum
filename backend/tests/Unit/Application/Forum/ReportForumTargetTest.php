@@ -11,7 +11,7 @@ use Daems\Domain\Forum\ForumReport;
 use Daems\Domain\Shared\NotFoundException;
 use Daems\Domain\Tenant\TenantId;
 use Daems\Tests\Support\ActingUserFactory;
-use Daems\Tests\Support\Fake\InMemoryAdminApplicationDismissalRepository;
+use DaemsModule\Members\Tests\Support\InMemoryAdminApplicationDismissalRepository;
 use DaemsModule\Forum\Tests\Support\InMemoryForumReportRepository;
 use DaemsModule\Forum\Tests\Support\InMemoryForumRepository;
 use DaemsModule\Forum\Tests\Support\ForumSeed;
