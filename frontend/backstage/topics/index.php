@@ -53,7 +53,7 @@ include __DIR__ . '/../forum-kpi-strip.php';
       $svg_path  = '/modules/forum/assets/backstage/empty-state-topics.svg';
       $title     = 'No topics';
       $body      = 'No forum topics match this filter.';
-      include DAEMS_SITE_PUBLIC . '/pages/backstage/shared/empty-state.php';
+      include DAEMS_SITE_PUBLIC . '/pages/shared/empty-state.php';
     ?>
   </div>
   <div id="ft-error-mount" style="display:none;"></div>
@@ -64,4 +64,4 @@ include __DIR__ . '/../forum-kpi-strip.php';
 
 <?php
 $pageContent = ob_get_clean();
-require DAEMS_SITE_PUBLIC . '/pages/backstage/layout.php';
+require DAEMS_SITE_PUBLIC . '/pages/layout.php';

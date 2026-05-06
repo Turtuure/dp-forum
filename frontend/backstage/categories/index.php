@@ -49,4 +49,4 @@ include __DIR__ . '/../forum-kpi-strip.php';
 
 <?php
 $pageContent = ob_get_clean();
-require DAEMS_SITE_PUBLIC . '/pages/backstage/layout.php';
+require DAEMS_SITE_PUBLIC . '/pages/layout.php';
