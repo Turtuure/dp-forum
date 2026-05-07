@@ -6,7 +6,7 @@ $isAdmin = $u && (!empty($u['is_platform_admin']) || ($u['role'] ?? '') === 'adm
                || ($u['role'] ?? '') === 'global_system_administrator');
 if (!$isAdmin) { header('Location: /'); exit; }
 
-$pageTitle   = 'Forum';
+$pageTitle   = 'backstage.title.forum';
 $activePage  = 'forum';
 $breadcrumbs = [];
 

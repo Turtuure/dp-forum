@@ -6,7 +6,7 @@ $isAdmin = $u && (!empty($u['is_platform_admin']) || ($u['role'] ?? '') === 'adm
                || ($u['role'] ?? '') === 'global_system_administrator');
 if (!$isAdmin) { header('Location: /'); exit; }
 
-$pageTitle   = 'Forum reports';
+$pageTitle   = 'backstage.title.forum_reports';
 $activePage  = 'forum';
 $breadcrumbs = [['label' => 'Forum', 'url' => '/backstage/forum'], ['label' => 'Reports']];
 
@@ -33,12 +33,14 @@ include __DIR__ . '/../forum-kpi-strip.php';
       <button type="button" class="data-explorer__seg-btn"           data-status="resolved">Resolved</button>
       <button type="button" class="data-explorer__seg-btn"           data-status="dismissed">Dismissed</button>
     </div>
-    <select class="data-explorer__search" id="fr-target-filter" style="min-width: 130px;">
+    <select class="data-explorer__search" id="fr-target-filter" name="target_type"
+            aria-label="Filter by report target type" style="min-width: 130px;">
       <option value="">All types</option>
       <option value="post">Posts</option>
       <option value="topic">Topics</option>
     </select>
-    <input type="search" id="fr-search" class="data-explorer__search" placeholder="Search…">
+    <input type="search" id="fr-search" name="q" class="data-explorer__search"
+           aria-label="Search reports" placeholder="Search…">
   </div>
 
   <div id="fr-list-mount" style="padding: 12px 0;"></div>
