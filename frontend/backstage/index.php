@@ -6,7 +6,7 @@ $isAdmin = $u && (!empty($u['is_platform_admin']) || ($u['role'] ?? '') === 'adm
                || ($u['role'] ?? '') === 'global_system_administrator');
 if (!$isAdmin) { header('Location: /'); exit; }
 
-$pageTitle   = 'Forum';
+$pageTitle   = 'backstage.title.forum';
 $activePage  = 'forum';
 $breadcrumbs = [];
 
@@ -38,4 +38,4 @@ include __DIR__ . '/forum-kpi-strip.php';
 
 <?php
 $pageContent = ob_get_clean();
-require DAEMS_SITE_PUBLIC . '/pages/backstage/layout.php';
+require DAEMS_SITE_PUBLIC . '/pages/layout.php';
