@@ -265,6 +265,18 @@ return function (Container $container): void {
     );
 
     // ---------------------------------------------------------------------
+    // Dashboard widgets — registered with the platform's WidgetRegistry singleton
+    // (already bound by daems-platform/bootstrap/app.php before module bindings run).
+    // ---------------------------------------------------------------------
+    $registry = $container->make(\Daems\Domain\Dashboard\WidgetRegistry::class);
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\ReportsKpiWidget());
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\PostsTodayKpiWidget());
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\FlaggedUsersKpiWidget());
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\PinnedTopicsKpiWidget());
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\ReportsQueueWidget());
+    $registry->register(new \DaemsModule\Forum\Frontend\Backstage\Widgets\RecentForumPostsListWidget());
+
+    // ---------------------------------------------------------------------
     // 3× Controllers
     // ---------------------------------------------------------------------
     $container->bind(
