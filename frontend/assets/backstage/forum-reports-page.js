@@ -115,8 +115,42 @@
     fetch('/api/backstage/forum.php?op=report_detail&id=' + encodeURIComponent(id))
       .then(function (r) { return r.json(); })
       .then(function (j) {
-        showPanel(id, (j && j.data) || {});
+        showPanel(id, normalizeDetail((j && j.data) || {}));
       });
+  }
+
+  /**
+   * API returns `{aggregated, raw_reports, target_content}` where target_content
+   * is an object `{author, title|content, created_at}`. Flatten + stringify so
+   * the panel template can keep using `detail.target_type`, `detail.target_text`,
+   * `detail.reporter_rows`.
+   */
+  function normalizeDetail(d) {
+    var agg = d.aggregated || {};
+    var tc = d.target_content || {};
+    var contentText = '';
+    if (typeof tc === 'string') {
+      contentText = tc;
+    } else if (tc && (tc.title || tc.content)) {
+      contentText = (tc.title || tc.content || '').toString();
+      if (tc.author) contentText = tc.author + ' — ' + contentText;
+    }
+    return {
+      target_type:    agg.target_type || '',
+      target_id:      agg.target_id || '',
+      target_text:    contentText || '(content unavailable)',
+      // Raw editable body — title for topics, content for posts. Used by the
+      // "Edit content" action form's textarea prefill.
+      raw_content:    (tc && (tc.content || tc.title)) || '',
+      reporter_rows:  (d.raw_reports || []).map(function (r) {
+        return {
+          reporter_id:    r.reporter_user_id || '',
+          reporter_name:  r.reporter_name || '',
+          reason:         r.reason_category || '',
+          comment:        r.reason_detail || '',
+        };
+      }),
+    };
   }
 
   function showPanel(id, detail) {
@@ -124,7 +158,7 @@
     body.innerHTML =
       '<h3 style="font-size:14px;margin:0 0 6px;">Reported ' + esc(detail.target_type || '') + '</h3>' +
       '<p style="background:var(--surface-light); padding:10px; border-radius:6px; font-size:13px;">' +
-      esc(detail.target_content || detail.target_excerpt || '(content unavailable)') + '</p>' +
+      esc(detail.target_text) + '</p>' +
       '<h3 style="font-size:14px;margin:14px 0 6px;">Reporters (' + (detail.reporter_rows ? detail.reporter_rows.length : 0) + ')</h3>' +
       '<ul style="list-style:none;padding:0;margin:0;">' +
       (detail.reporter_rows ? detail.reporter_rows.map(function (rr) {
@@ -169,7 +203,7 @@
       formMount.innerHTML =
         '<label style="display:block;font-size:11px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:4px;">Edit content</label>' +
         '<textarea id="fr-form-content" rows="6" class="data-explorer__search" style="width:100%;font-family:inherit;">' +
-        esc(detail.target_content || '') + '</textarea>' +
+        esc(detail.raw_content || '') + '</textarea>' +
         '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;">' +
         '  <button type="button" class="btn btn--primary" id="fr-form-apply">Apply edit</button></div>';
     } else if (action === 'warned') {
